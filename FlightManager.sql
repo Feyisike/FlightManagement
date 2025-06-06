@@ -1,4 +1,5 @@
--- database: FlightManager.db
+-- Flight Management System Database Schema
+-- This script creates the necessary tables and inserts sample data for a flight management system.
 CREATE TABLE Flight(
     FlightID INT PRIMARY KEY,
     FlightNumber VARCHAR(10) NOT NULL,
@@ -28,8 +29,8 @@ CREATE TABLE CrewMember(
     Forename VARCHAR(50) NOT NULL,
     Surname VARCHAR(50) NOT NULL,
     Role VARCHAR(20) NOT NULL,
-    AirlineID INT NOT NULL,
-    FlightNumber VARCHAR(10) NOT NULL,
+    AirlineID INT,
+    FlightNumber VARCHAR(10),
     FOREIGN KEY (AirlineID) REFERENCES Airline (AirlineID),
     FOREIGN KEY (FlightNUmber) REFERENCES Flight (FlightNumber));
 
