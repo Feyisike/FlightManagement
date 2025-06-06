@@ -1,3 +1,4 @@
+-- database: FlightDatabase.db
 
 -- Flight Management System Database Schema
 -- This script creates the necessary tables and inserts sample data for a flight management system.
