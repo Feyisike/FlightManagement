@@ -1,7 +1,7 @@
 -- database: FlightManager.db
 CREATE TABLE Flight(
     FlightID INT PRIMARY KEY,
-    FlightNnumber VARCHAR(10) NOT NULL,
+    FlightNumber VARCHAR(10) NOT NULL,
     DepartureAirportID INT NOT NULL,
     DestinationAirportID INT NOT NULL,
     DepartureDateTime DATETIME NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE CrewMember(
     (14, 'Cargo Carriers', 'CC121', 'Cargo Transport'),
     (15, 'HeliServices', 'HS122', 'Helicopter Services');
 
-INSERT INTO AIprort(AirportID, AirportName, AirportCode, LOcation)
+INSERT INTO Airport(AirportID, AirportName, AirportCode, LOcation)
 VALUES
 (1, 'International Airport', 'IA123', 'City Center'),
 (2, 'Regional Airport', 'RA456', 'Suburban Area'),
@@ -69,7 +69,7 @@ VALUES
 (14, 'Polar Airport', 'PA121', 'Polar Region'),
 (15, 'Urban Heliport', 'UH122', 'Urban Helicopter Landing');
 
-INSERT INTO Flight(FlightID, FlightNumber,DepartureAirportID, DestinationAIrportID, DepartureDateTime, ArrivalDateTime, AirlineID, Flightstatus)
+INSERT INTO Flight(FlightID, FlightNumber, DepartureAirportID, DestinationAIrportID, DepartureDateTime, ArrivalDateTime, AirlineID, Flightstatus)
 VALUES
 (1, 'AI123-001', 1, 2, '2023-10-01 08:00:00', '2023-10-01 10:00:00', 1, 'Scheduled'),
 (2, 'SHA456-002', 2, 3, '2023-10-01 09:30:00', '2023-10-01 11:30:00', 2, 'Delayed'),
@@ -87,20 +87,24 @@ VALUES
 (14, 'CC121-014', 14, 15, '2023-10-03 04:45:00', '2023-10-03 06:45:00', 14, 'Diverted'),
 (15, 'HS122-015', 15, 1, '2023-10-03 07:30:00', '2023-10-03 09:30:00', 15, 'Cancelled');
 
-INSERT INTO CrewMember (CrewID, Forename, Surname, Role, AirlineID, FlightNumber)
+INSERT INTO CrewMember(CrewID, Forename, Surname, Role)
 VALUES
-(1, 'John', 'Doe', 'Pilot', 1, 'AI123-001'),
-(2, 'Jane', 'Smith', 'Co-Pilot', 2, 'SHA456-002'),
-(3, 'Emily', 'Johnson', 'Flight Attendant', 3, 'OF789-003'),
-(4, 'Michael', 'Brown', 'Flight Engineer', 4, 'DW101-004'),
-(5, 'Sarah', 'Davis', 'Cabin Crew', 5, 'MA112-005'),
-(6, 'David', 'Wilson', 'Pilot', 6, 'PA113-006'),
-(7, 'Laura', 'Garcia', 'Co-Pilot', 7, 'AA114-007'),
-(8, 'James', 'Martinez', 'Flight Attendant', 8, 'PE115-008'),
-(9, 'Linda', 'Hernandez', 'Flight Engineer', 9, 'UJ116-009'),
-(10, 'Robert', 'Lopez', 'Cabin Crew', 10, 'RAS117-010'),
-(11, 'Patricia', 'Gonzalez', 'Pilot', 11, 'LF118-011'),
-(12, 'Charles', 'Perez', 'Co-Pilot', 12, 'BA119-012'),
-(13, 'Barbara', 'Roberts', 'Flight Attendant', 13, 'CA120-013'),
-(14, 'William', 'Turner', 'Flight Engineer', 14, 'CC121-014'),
-(15, 'Elizabeth', 'Phillips', 'Cabin Crew', 15, 'HS122-015');
+(1, 'John', 'Doe', 'Pilot'),
+(2, 'Jane', 'Smith', 'Co-Pilot'),
+(3, 'Emily', 'Johnson', 'Flight Attendant'),
+(4, 'Michael', 'Brown', 'Flight Attendant'),
+(5, 'Sarah', 'Davis', 'Pilot'),
+(6, 'David', 'Wilson', 'Co-Pilot'),
+(7, 'Laura', 'Garcia', 'Flight Attendant'),
+(8, 'James', 'Martinez', 'Flight Attendant'),
+(9, 'Linda', 'Rodriguez', 'Pilot'),
+(10, 'Robert', 'Lopez', 'Co-Pilot'),
+(11, 'Patricia', 'Hernandez', 'Flight Attendant'),
+(12, 'William', 'Gonzalez', 'Flight Attendant'),
+(13, 'Elizabeth', 'Perez', 'Pilot'),
+(14, 'Charles', 'Sanchez', 'Co-Pilot'),
+(15, 'Jessica', 'Clark', 'Flight Attendant');
+
+
+
+
