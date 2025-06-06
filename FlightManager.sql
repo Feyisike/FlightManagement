@@ -1,5 +1,9 @@
+-- database: Flightdatabase.db
 -- Flight Management System Database Schema
 -- This script creates the necessary tables and inserts sample data for a flight management system.
+-- -- The schema includes tables for flights, airlines, airports, and crew members.
+-- Each table has its own primary key and relevant foreign keys to maintain relationships.
+
 CREATE TABLE Flight(
     FlightID INT PRIMARY KEY,
     FlightNumber VARCHAR(10) NOT NULL,
