@@ -113,4 +113,4 @@ VALUES
 
 
 
-
+ALTER TABLE CrewMember DROP COLUMN FlightNumber;
