@@ -1,4 +1,4 @@
--- This SQL script creates a view named FlightView that retrieves flight information
+-- This SQL script creates the FlightView that retrieves flight information
 -- including flight ID, flight number, departure and destination airport names, departure and arrival times, airline name, and flight status.
 -- The view filters the flights to include only those with statuses of 'Scheduled', 'Delayed', or 'Cancelled'.
 -- This script assumes that the necessary tables (Flight, Airline, Airport) already exist in the database.
