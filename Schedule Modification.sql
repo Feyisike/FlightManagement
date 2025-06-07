@@ -9,3 +9,11 @@ SET
     ArrivalDateTime = '2025-06-07 18:00:10'
 WHERE
     FlightID = 1;
+
+    UPDATE Flight
+SET
+    FlightStatus = 'Boarding',
+    DepartureDateTime = '2025-06-06 15:00:00',
+    ArrivalDateTime = '2025-06-06 18:00:10'
+WHERE
+    FlightID = 2;
