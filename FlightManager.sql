@@ -3,7 +3,7 @@
 -- Flight Management System Database Schema
 -- This script creates the necessary tables and inserts sample data for a flight management system.
 -- -- The schema includes tables for flights, airlines, airports, and crew members.
--- Each table has its own primary key and relevant foreign keys to maintain relationships.
+-- Each table has its own primary key and some tables have foreign keys to maintain relationships.
 
 CREATE TABLE Flight(
     FlightID INT PRIMARY KEY,
@@ -39,6 +39,8 @@ CREATE TABLE CrewMember(
     FOREIGN KEY (AirlineID) REFERENCES Airline (AirlineID),
     FOREIGN KEY (FlightNUmber) REFERENCES Flight (FlightNumber));
 
+-- Sample data for Airline table
+-- Each airline has a unique AirlineID, AirlineName, AirlineCode, and RegionCoverage.
     INSERT INTO Airline(AirlineID, AirlineName, AirlineCode, RegionCoverage)
     VALUES
     (1, 'Airways International', 'AI123', 'Global'),
@@ -57,6 +59,8 @@ CREATE TABLE CrewMember(
     (14, 'Cargo Carriers', 'CC121', 'Cargo Transport'),
     (15, 'HeliServices', 'HS122', 'Helicopter Services');
 
+-- Sample data for Airport table
+-- Each airport has a unique AirportID, AirportName, AirportCode, and Location.
 INSERT INTO Airport(AirportID, AirportName, AirportCode, LOcation)
 VALUES
 (1, 'International Airport', 'IA123', 'City Center'),
@@ -75,6 +79,9 @@ VALUES
 (14, 'Polar Airport', 'PA121', 'Polar Region'),
 (15, 'Urban Heliport', 'UH122', 'Urban Helicopter Landing');
 
+-- Sample data for Flight table
+-- Each flight has a unique FlightID, FlightNumber, Departure and Destination Airport IDs,
+-- Departure and Arrival DateTimes, AirlineID, and FlightStatus.
 INSERT INTO Flight(FlightID, FlightNumber, DepartureAirportID, DestinationAIrportID, DepartureDateTime, ArrivalDateTime, AirlineID, Flightstatus)
 VALUES
 (1, 'AI123-001', 1, 2, '2023-10-01 08:00:00', '2023-10-01 10:00:00', 1, 'Scheduled'),
@@ -93,6 +100,7 @@ VALUES
 (14, 'CC121-014', 14, 15, '2023-10-03 04:45:00', '2023-10-03 06:45:00', 14, 'Diverted'),
 (15, 'HS122-015', 15, 1, '2023-10-03 07:30:00', '2023-10-03 09:30:00', 15, 'Cancelled');
 
+--
 INSERT INTO CrewMember(CrewID, Forename, Surname, Role)
 VALUES
 (1, 'John', 'Doe', 'Pilot'),
@@ -112,5 +120,3 @@ VALUES
 (15, 'Jessica', 'Clark', 'Flight Attendant');
 
 
-
-ALTER TABLE CrewMember DROP COLUMN FlightNumber;
