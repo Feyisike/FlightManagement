@@ -14,7 +14,7 @@ CREATE TABLE Flight(
     ArrivalDateTime DATETIME NOT NULL,
     AirlineID INT NOT NULL,
     FlightStatus VARCHAR(20) NOT NULL,
-    PilotID INT,
+    PilotID INT NOT NULL,
     FOREIGN KEY (DepartureAirportID) REFERENCES Airport (AirportID),
     FOREIGN KEY (DestinationAirportID) REFERENCES Airport(AirportID),
     FOREIGN KEY (PilotID) REFERENCES CrewMember(CrewID));
@@ -37,9 +37,8 @@ CREATE TABLE CrewMember(
     Surname VARCHAR(50) NOT NULL,
     Role VARCHAR(20) NOT NULL,
     AirlineID INT,
-    FlightNumber VARCHAR(10),
-    FOREIGN KEY (AirlineID) REFERENCES Airline(AirlineID),
-    FOREIGN KEY (FlightNUmber) REFERENCES Flight(FlightNumber));
+    FOREIGN KEY (AirlineID) REFERENCES Airline(AirlineID));
+    
 
 -- Sample data for Airline table
 -- Each airline has a unique AirlineID, AirlineName, AirlineCode, and RegionCoverage.
@@ -103,21 +102,21 @@ VALUES
 (15, 'HS122-015', 15, 1, '2023-10-03 07:30:00', '2023-10-03 09:30:00', 15, 'Cancelled', 9);
 
 --
-INSERT INTO CrewMember(CrewID, Forename, Surname, Role, AirlineID, FlightNumber)
+INSERT INTO CrewMember(CrewID, Forename, Surname, Role, AirlineID)
 VALUES
-(1, 'John', 'Doe', 'Pilot', 1, 'AI123-001'),
-(2, 'Jane', 'Smith', 'Co-Pilot',1, 'AI123-001'),
-(3, 'Emily', 'Johnson', 'Flight Attendant', 1, 'AI123-001'),
-(4, 'Michael', 'Brown', 'Flight Attendant', 1, 'AI123-001'),
-(5, 'Sarah', 'Davis', 'Pilot',2, 'MA112-005'),
-(6, 'David', 'Wilson', 'Co-Pilot', 2, 'MA112-005'),
-(7, 'Laura', 'Garcia', 'Flight Attendant', 2, 'MA112-005'),
-(8, 'James', 'Martinez', 'Flight Attendant', 2, 'MA112-005'),
-(9, 'Linda', 'Rodriguez', 'Pilot', 3, 'UJ116-009'),
-(10, 'Robert', 'Lopez', 'Co-Pilot',  3, 'UJ116-009'),
-(11, 'Patricia', 'Hernandez', 'Flight Attendant',  3, 'UJ116-009'),
-(12, 'William', 'Gonzalez', 'Flight Attendant',  3, 'UJ116-009'),
-(13, 'Elizabeth', 'Perez', 'Pilot',  4, 'HS122-015'),
-(14, 'Charles', 'Sanchez', 'Co-Pilot',  4, 'HS122-015'),
-(15, 'Jessica', 'Clark', 'Flight Attendant',  4, 'HS122-015');
+(1, 'John', 'Doe', 'Pilot', 1),
+(2, 'Jane', 'Smith', 'Co-Pilot',1),
+(3, 'Emily', 'Johnson', 'Flight Attendant', 1),
+(4, 'Michael', 'Brown', 'Flight Attendant', 1),
+(5, 'Sarah', 'Davis', 'Pilot', 2),
+(6, 'David', 'Wilson', 'Co-Pilot', 2),
+(7, 'Laura', 'Garcia', 'Flight Attendant', 2),
+(8, 'James', 'Martinez', 'Flight Attendant', 2),
+(9, 'Linda', 'Rodriguez', 'Pilot', 3),
+(10, 'Robert', 'Lopez', 'Co-Pilot',  3),
+(11, 'Patricia', 'Hernandez', 'Flight Attendant', 3),
+(12, 'William', 'Gonzalez', 'Flight Attendant',  3),
+(13, 'Elizabeth', 'Perez', 'Pilot',  4),
+(14, 'Charles', 'Sanchez', 'Co-Pilot',  4),
+(15, 'Jessica', 'Clark', 'Flight Attendant',  4);
 
