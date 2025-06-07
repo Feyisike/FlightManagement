@@ -1,4 +1,4 @@
--- database: FlightDatabase.db
+-- database: Database.db
 
 -- Flight Management System Database Schema
 -- This script creates the necessary tables and inserts sample data for a flight management system.
@@ -14,8 +14,10 @@ CREATE TABLE Flight(
     ArrivalDateTime DATETIME NOT NULL,
     AirlineID INT NOT NULL,
     FlightStatus VARCHAR(20) NOT NULL,
+    PilotID INT,
     FOREIGN KEY (DepartureAirportID) REFERENCES Airport (AirportID),
-    FOREIGN KEY (DestinationAirportID) REFERENCES Airport (AirportID));
+    FOREIGN KEY (DestinationAirportID) REFERENCES Airport(AirportID),
+    FOREIGN KEY (PilotID) REFERENCES CrewMember(CrewID));
 
 CREATE TABLE Airline(
     AirlineID INT PRIMARY KEY,
@@ -36,8 +38,8 @@ CREATE TABLE CrewMember(
     Role VARCHAR(20) NOT NULL,
     AirlineID INT,
     FlightNumber VARCHAR(10),
-    FOREIGN KEY (AirlineID) REFERENCES Airline (AirlineID),
-    FOREIGN KEY (FlightNUmber) REFERENCES Flight (FlightNumber));
+    FOREIGN KEY (AirlineID) REFERENCES Airline(AirlineID),
+    FOREIGN KEY (FlightNUmber) REFERENCES Flight(FlightNumber));
 
 -- Sample data for Airline table
 -- Each airline has a unique AirlineID, AirlineName, AirlineCode, and RegionCoverage.
@@ -61,7 +63,7 @@ CREATE TABLE CrewMember(
 
 -- Sample data for Airport table
 -- Each airport has a unique AirportID, AirportName, AirportCode, and Location.
-INSERT INTO Airport(AirportID, AirportName, AirportCode, LOcation)
+INSERT INTO Airport(AirportID, AirportName, AirportCode, Location)
 VALUES
 (1, 'International Airport', 'IA123', 'City Center'),
 (2, 'Regional Airport', 'RA456', 'Suburban Area'),
@@ -82,43 +84,40 @@ VALUES
 -- Sample data for Flight table
 -- Each flight has a unique FlightID, FlightNumber, Departure and Destination Airport IDs,
 -- Departure and Arrival DateTimes, AirlineID, and FlightStatus.
-INSERT INTO Flight(FlightID, FlightNumber, DepartureAirportID, DestinationAIrportID, DepartureDateTime, ArrivalDateTime, AirlineID, Flightstatus)
+INSERT INTO Flight(FlightID, FlightNumber, DepartureAirportID, DestinationAIrportID, DepartureDateTime, ArrivalDateTime, AirlineID, Flightstatus, PilotID)
 VALUES
-(1, 'AI123-001', 1, 2, '2023-10-01 08:00:00', '2023-10-01 10:00:00', 1, 'Scheduled'),
-(2, 'SHA456-002', 2, 3, '2023-10-01 09:30:00', '2023-10-01 11:30:00', 2, 'Delayed'),
-(3, 'OF789-003', 3, 4, '2023-10-01 12:00:00', '2023-10-01 14:00:00', 3, 'Cancelled'),
-(4, 'DW101-004', 4, 5, '2023-10-01 15:00:00', '2023-10-01 17:00:00', 4, 'On Time'),
-(5, 'MA112-005', 5, 6, '2023-10-01 18:30:00', '2023-10-01 20:30:00', 5, 'Boarding'),
-(6, 'PA113-006', 6, 7, '2023-10-01 21:00:00', '2023-10-01 23:00:00', 6, 'Landed'),
-(7, 'AA114-007', 7, 8, '2023-10-02 07:15:00', '2023-10-02 09:15:00', 7, 'Diverted'),
-(8, 'PE115-008', 8, 9, '2023-10-02 10:45:00', '2023-10-02 12:45:00', 8, 'Cancelled'),
-(9, 'UJ116-009', 9, 10, '2023-10-02 13:30:00', '2023-10-02 15:30:00', 9, 'Scheduled'),
-(10, 'RAS117-010', 10, 11, '2023-10-02 16:20:00', '2023-10-02 18:20:00', 10, 'Delayed'),
-(11, 'LF118-011', 11, 12, '2023-10-02 19:00:00', '2023-10-02 21:00:00', 11, 'On Time'),
-(12, 'BA119-012', 12, 13, '2023-10-02 22:30:00', '2023-10-03 00:30:00', 12, 'Boarding'),
-(13, 'CA120-013', 13, 14, '2023-10-03 01:15:00', '2023-10-03 03:15:00', 13, 'Landed'),
-(14, 'CC121-014', 14, 15, '2023-10-03 04:45:00', '2023-10-03 06:45:00', 14, 'Diverted'),
-(15, 'HS122-015', 15, 1, '2023-10-03 07:30:00', '2023-10-03 09:30:00', 15, 'Cancelled');
+(1, 'AI123-001', 1, 2, '2023-10-01 08:00:00', '2023-10-01 10:00:00', 1, 'Scheduled', 1),
+(2, 'SHA456-002', 2, 3, '2023-10-01 09:30:00', '2023-10-01 11:30:00', 2, 'Delayed', 5),
+(3, 'OF789-003', 3, 4, '2023-10-01 12:00:00', '2023-10-01 14:00:00', 3, 'Cancelled', 9),
+(4, 'DW101-004', 4, 5, '2023-10-01 15:00:00', '2023-10-01 17:00:00', 4, 'On Time',13),
+(5, 'MA112-005', 5, 6, '2023-10-01 18:30:00', '2023-10-01 20:30:00', 5, 'Boarding', 1),
+(6, 'PA113-006', 6, 7, '2023-10-01 21:00:00', '2023-10-01 23:00:00', 6, 'Landed', 5),
+(7, 'AA114-007', 7, 8, '2023-10-02 07:15:00', '2023-10-02 09:15:00', 7, 'Diverted', 9),
+(8, 'PE115-008', 8, 9, '2023-10-02 10:45:00', '2023-10-02 12:45:00', 8, 'Cancelled', 13),
+(9, 'UJ116-009', 9, 10, '2023-10-02 13:30:00', '2023-10-02 15:30:00', 9, 'Scheduled', 1),
+(10, 'RAS117-010', 10, 11, '2023-10-02 16:20:00', '2023-10-02 18:20:00', 10, 'Delayed', 5),
+(11, 'LF118-011', 11, 12, '2023-10-02 19:00:00', '2023-10-02 21:00:00', 11, 'On Time', 9),
+(12, 'BA119-012', 12, 13, '2023-10-02 22:30:00', '2023-10-03 00:30:00', 12, 'Boarding', 13),
+(13, 'CA120-013', 13, 14, '2023-10-03 01:15:00', '2023-10-03 03:15:00', 13, 'Landed', 1),
+(14, 'CC121-014', 14, 15, '2023-10-03 04:45:00', '2023-10-03 06:45:00', 14, 'Diverted', 5),
+(15, 'HS122-015', 15, 1, '2023-10-03 07:30:00', '2023-10-03 09:30:00', 15, 'Cancelled', 9);
 
 --
-INSERT INTO CrewMember(CrewID, Forename, Surname, Role)
+INSERT INTO CrewMember(CrewID, Forename, Surname, Role, AirlineID, FlightNumber)
 VALUES
-(1, 'John', 'Doe', 'Pilot'),
-(2, 'Jane', 'Smith', 'Co-Pilot'),
-(3, 'Emily', 'Johnson', 'Flight Attendant'),
-(4, 'Michael', 'Brown', 'Flight Attendant'),
-(5, 'Sarah', 'Davis', 'Pilot'),
-(6, 'David', 'Wilson', 'Co-Pilot'),
-(7, 'Laura', 'Garcia', 'Flight Attendant'),
-(8, 'James', 'Martinez', 'Flight Attendant'),
-(9, 'Linda', 'Rodriguez', 'Pilot'),
-(10, 'Robert', 'Lopez', 'Co-Pilot'),
-(11, 'Patricia', 'Hernandez', 'Flight Attendant'),
-(12, 'William', 'Gonzalez', 'Flight Attendant'),
-(13, 'Elizabeth', 'Perez', 'Pilot'),
-(14, 'Charles', 'Sanchez', 'Co-Pilot'),
-(15, 'Jessica', 'Clark', 'Flight Attendant');
+(1, 'John', 'Doe', 'Pilot', 1, 'AI123-001'),
+(2, 'Jane', 'Smith', 'Co-Pilot',1, 'AI123-001'),
+(3, 'Emily', 'Johnson', 'Flight Attendant', 1, 'AI123-001'),
+(4, 'Michael', 'Brown', 'Flight Attendant', 1, 'AI123-001'),
+(5, 'Sarah', 'Davis', 'Pilot',2, 'MA112-005'),
+(6, 'David', 'Wilson', 'Co-Pilot', 2, 'MA112-005'),
+(7, 'Laura', 'Garcia', 'Flight Attendant', 2, 'MA112-005'),
+(8, 'James', 'Martinez', 'Flight Attendant', 2, 'MA112-005'),
+(9, 'Linda', 'Rodriguez', 'Pilot', 3, 'UJ116-009'),
+(10, 'Robert', 'Lopez', 'Co-Pilot',  3, 'UJ116-009'),
+(11, 'Patricia', 'Hernandez', 'Flight Attendant',  3, 'UJ116-009'),
+(12, 'William', 'Gonzalez', 'Flight Attendant',  3, 'UJ116-009'),
+(13, 'Elizabeth', 'Perez', 'Pilot',  4, 'HS122-015'),
+(14, 'Charles', 'Sanchez', 'Co-Pilot',  4, 'HS122-015'),
+(15, 'Jessica', 'Clark', 'Flight Attendant',  4, 'HS122-015');
 
-
-ALTER TABLE "Flight"
-ADD PilotID INT;
