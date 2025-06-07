@@ -120,3 +120,5 @@ VALUES
 (15, 'Jessica', 'Clark', 'Flight Attendant');
 
 
+ALTER TABLE "Flight"
+ADD PilotID INT;
