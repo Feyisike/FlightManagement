@@ -1,5 +1,5 @@
 -- Active: 1749242512549@@127.0.0.1@3306
--- database: FlightDatabase.db
+-- database: Database.db
 
 -- This SQL script modifies  the Flight Table to update the flightStatus  and change the departure time of a flight.
 UPDATE Flight

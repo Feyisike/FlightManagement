@@ -1,0 +1,3 @@
+-- Active: 1749242512549@@127.0.0.1@3306
+-- database: Database.db
+-- This SQL script assigns a Pilot to a flight 
