@@ -1,5 +1,5 @@
 -- database: FlightDatabase.db
-d destination airports.
+
 CREATe View Status AS
 SELECT
     f.FlightID,
@@ -34,7 +34,7 @@ WHERE
     f.FlightStatus = 'Cancelled';
 
     SELECT * FROM FlightDetails;
-    
+
 -- This view combines flight details with the corresponding airline and departure and destination airports.
 -- The view includes the flight ID, flight number, departure and destination airport names, departure and arrival times, airline name, and flight status.
 -- The view filters flights to only include those that are scheduled, delayed, or cancelled.
