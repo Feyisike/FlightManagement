@@ -73,28 +73,28 @@ class AddFlightInfo:
         #self.flightID
         #) + "\n" + self.flightNumber + "\n" + self.departureAirport + "\n" + self.destinationAirport + "\n" + self.flightStatus
     
-    def insert_data(self):
-        try:
+def insert_data(self):
+    try:
         #self.get_connection()
-            conn2=sqlite3.connect('DBFlight.db')
-            mycur3 = conn2.cursor()
+        conn2=sqlite3.connect('DBFlight.db')
+        mycur3 = conn2.cursor()
 
-            flight = AddFlightInfo()
-            #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
-            flight.set_flight_id(int(input("Enter FlightID: ")))
-            flight.set_flight_number(input("Enter FlightNumber: "))
-            flight.set_departure_airport(input("Enter Departure Airport: "))
-            flight.set_destination_airport(input("Enter Destination Airport: "))
-            flight.set_flight_status(input("Enter Flight Status: "))
-            data = str(self.flightID) + "," + self.flight_number + ","+ self.flight_status
-            #mycur3.execute("INSERT INTO Flight VALUES(?,?,?)", tuple(str(flight).split(",")))
-            mycur3.executemany("INSERT INTO Flight VALUES(?,?,?)", data)
-            mycur3.commit()
-            print("Inserted data successfully")
-        except Exception as e:
-            print(e)
-        finally:
-            mycur3.close()
+        flight = AddFlightInfo()
+        #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
+        flight.set_flight_id(int(input("Enter FlightID: ")))
+        flight.set_flight_number(input("Enter FlightNumber: "))
+        flight.set_departure_airport(input("Enter Departure Airport: "))
+        flight.set_destination_airport(input("Enter Destination Airport: "))
+        flight.set_flight_status(input("Enter Flight Status: "))
+        data = str(self.flightID) + "," + self.flight_number + ","+ self.flight_status
+        #mycur3.execute("INSERT INTO Flight VALUES(?,?,?)", tuple(str(flight).split(",")))
+        mycur3.executemany("INSERT INTO Flight VALUES(?,?,?)", data)
+        mycur3.commit()
+        print("Inserted data successfully")
+    except Exception as e:
+        print(e)
+    finally:
+         mycur3.close()
 while True:
   print("\n Menu:")
   print("**********")
