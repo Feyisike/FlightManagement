@@ -11,22 +11,23 @@ mycur2.close()
 class AddFlightInfo:
     def _init_(self):
         self.flightID = 0
-        self.departureAirport = ''
-        self.destinationAirport = ''
+        self.departureAirportID = 0
+        self.destinationAirportID =  0
         self.departureDateTime = ''
         self.arrivalDateTime = ''
         self.flightNumber = ''
-        self.airlineName = ''
+        self.airlineID = 0
         self.flightstatus = ''
+        self.pilotID = 0
 
     def set_flight_id(self, flightID):
         self.flightID = flightID
 
-    def set_departure_airport(self, departureAirport):
-        self.departure_airport = departureAirport
+    def set_departure_airport(self, departureAirportID):
+        self.departure_airport = departureAirportID
 
-    def set_destination_airport(self, destinationAirport):
-        self.destination_airport = destinationAirport
+    def set_destination_airport(self, destinationAirportID):
+        self.destination_airport = destinationAirportID
 
     def set_flight_status(self, flightStatus):
         self.flight_status = flightStatus
@@ -37,20 +38,23 @@ class AddFlightInfo:
     def set_arrival_datetime(self, arrivalDateTime):
         self.arrival_datetime = arrivalDateTime
 
-    def set_airline_name(self, airlineName):
-        self.airline_name = airlineName
+    def set_airline_id(self, airlineID):
+        self.airline_id = airlineID
 
     def set_flight_number(self, flightNumber):
         self.flight_number = flightNumber
+
+    def set_pilot_id(self, pilotID):
+        self.pilot_id = pilotID
 
     def get_flight_id(self):
         return self.flightID
     
     def get_depature_airport(self):
-        return self.departureAirport
+        return self.departureAirportID
     
     def get_destination_airport(self):
-        return self.destinationAirport
+        return self.destinationAirportID
     
     def get_flight_status(self):
         return self.flightStatus
@@ -61,40 +65,55 @@ class AddFlightInfo:
     def get_arrival_datetime(self):
         return self.arrivalDateTime
 
-    def get_airline_name(self):
-        return self.airlineName
+    def get_airline_id(self):
+        return self.airlineID
 
     def get_flight_number(self):
         return self.flightNumber
     
+    def get_pilot_id(self):
+        return self.pilotID
+
     def __str__(self):
-        return str(self.flightID) + "," + self.flight_number + ","+ self.flight_status
+        return str(self.flightID) + "," + self.flight_number + ","+ str(self.departureAirportID)+","+ str(self.destinationAirportID)+ "," + self.departureDateTime +","+ self.arrivalDateTime + "," +str(self.airlineID) + "," + self.flight_status + ","+str(self.pilotID)
         #return str(
         #self.flightID
         #) + "\n" + self.flightNumber + "\n" + self.departureAirport + "\n" + self.destinationAirport + "\n" + self.flightStatus
     
-def insert_data(self):
-    try:
-        #self.get_connection()
-        conn2=sqlite3.connect('DBFlight.db')
-        mycur3 = conn2.cursor()
+class DBoperations:
 
-        flight = AddFlightInfo()
-        #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
-        flight.set_flight_id(int(input("Enter FlightID: ")))
-        flight.set_flight_number(input("Enter FlightNumber: "))
-        flight.set_departure_airport(input("Enter Departure Airport: "))
-        flight.set_destination_airport(input("Enter Destination Airport: "))
-        flight.set_flight_status(input("Enter Flight Status: "))
-        data = str(self.flightID) + "," + self.flight_number + ","+ self.flight_status
-        #mycur3.execute("INSERT INTO Flight VALUES(?,?,?)", tuple(str(flight).split(",")))
-        mycur3.executemany("INSERT INTO Flight VALUES(?,?,?)", data)
-        mycur3.commit()
-        print("Inserted data successfully")
-    except Exception as e:
-        print(e)
-    finally:
-         mycur3.close()
+    def insert_data(self):
+        try:
+            #self.get_connection()
+            conn2=sqlite3.connect('DBFlight.db')
+            mycur3 = conn2.cursor()
+
+            flight = AddFlightInfo()
+            #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
+            flight.set_flight_id(int(input("Enter FlightID: ")))
+            flight.set_flight_number(input("Enter FlightNumber: "))
+            for row in mycur3.execute("SELECT AirportID, AirportName FROM Airport ORDER BY AirportID"):
+                print (row)
+            print("Please select different Airport IDs for Departure and Destination Airports")
+            flight.set_departure_airport(int(input("Enter Departure Airport ID: ")))
+            flight.set_destination_airport(int(input("Enter Destination Airport ID: ")))
+            flight.set_depature_datetime(input("Enter Departure Date and Time YYYY-MM-DD HH:MM:SS: "))
+            flight.set_arrival_datetime(input("Enter Arrival Date and Time YYYY-MM-DD HH:MM:SS: "))
+            for row in mycur3.execute("SELECT AirlineID, AirlineName FROM Airline ORDER BY AirlineID"):
+                print (row)
+            flight.set_airline_id(int(input("Enter AirlineID: ")))
+            flight.set_flight_status(input("Enter Flight Status: "))
+            print("Pilot IDs: 1 - John, 2 - Sarah, 3 - Linda, 4 - Elizabeth")
+            flight.set_pilot_id(int(input("Enter PilotID: ")))
+            #data = str(flight.get_flight_id()) + "," + flight.get_flight_number() + ","+ flight.get_flight_status()
+            mycur3.execute("INSERT INTO Flight VALUES(?,?,?)", tuple(str(flight).split(",")))
+            #mycur3.executemany("INSERT INTO Flight VALUES(?,?,?)", data)
+            mycur3.commit()
+            print("Inserted data successfully")
+        except Exception as e:
+            print(e)
+        finally:
+            mycur3.close()
 while True:
   print("\n Menu:")
   print("**********")
@@ -109,7 +128,7 @@ while True:
   __choose_menu = int(input("Enter your choice: "))
   #db_ops = DBOperations()
   if __choose_menu == 1:
-      AddFlightInfo().insert_data()
+    DBoperations().insert_data()
     #db_ops.create_table()
   #elif __choose_menu == 2:
    # db_ops.insert_data()
