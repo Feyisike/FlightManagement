@@ -103,7 +103,7 @@ class DBoperations:
                 print (row)
             flight.set_airline_id(int(input("Enter AirlineID: ")))
             flight.set_flight_status(input("Enter Flight Status: "))
-            print("Pilot IDs: 1 - John, 2 - Sarah, 3 - Linda, 4 - Elizabeth")
+            print("Pilot IDs: 1 - John, 5 - Sarah, 9 - Linda, 13 - Elizabeth")
             flight.set_pilot_id(int(input("Enter PilotID: ")))
             #data = str(flight.get_flight_id()) + "," + flight.get_flight_number() + ","+ flight.get_flight_status()
             mycur3.execute("INSERT INTO Flight VALUES(?,?,?)", tuple(str(flight).split(",")))
