@@ -12,18 +12,18 @@ class DBOperations:
                                         AirlineCode VARCHAR(10) NOT NULL,
                                         Region Coverage VARCHAR(50) NOT NULL);"""]
   #sql_create_table = "create table TableName"
-  sql_create_table_Airport =["""CREATE TABLE Airport(
+ sql_create_table_Airport =["""CREATE TABLE Airport(
                             AirportID INT PRIMARY KEY,
                             AirportName VARCHAR(80) NOT NULL,
                             AirportCode VARCHAR(10) NOT NULL,
                             Location VARCHAR(100) NOT NULL ); """]
-  sql_insert = ""
-  sql_select_all = "select * from TableName"
-  sql_search = "select * from TableName where FlightID = ?"
+  #sql_insert = ""
+  #sql_select_all = "select * from TableName"
+  '''sql_search = "select * from TableName where FlightID = ?"
   sql_alter_data = ""
   sql_update_data = ""
   sql_delete_data = ""
-  sql_drop_table = ""
+  sql_drop_table = ""'''
 
   def __init__(self):
     try:
