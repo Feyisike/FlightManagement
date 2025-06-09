@@ -47,6 +47,10 @@ def create_table(self):
     finally:
       self.conn.close()
 
+db_ops = DBOperations()
+  #if __choose_menu == 1:
+db_ops.create_table()
+
 ''' def insert_data(self):
     try:
       self.get_connection()
