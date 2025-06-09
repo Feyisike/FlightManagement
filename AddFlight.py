@@ -12,7 +12,7 @@ class AddFlightInfo:
     def _init_(self):
         self.flightID = 0
         self.departureAirportID = 0
-        self.destinationAirportID =  0
+        self.destinationAirportID = 0
         self.departureDateTime = ''
         self.arrivalDateTime = ''
         self.flightNumber = ''
