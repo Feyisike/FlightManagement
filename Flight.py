@@ -77,5 +77,7 @@ mycur.execute("""INSERT INTO CrewMember VALUES
     (14, 'Charles', 'Sanchez', 'Co-Pilot',  4),
     (15, 'Jessica', 'Clark', 'Flight Attendant',  4)""")
 con.commit()
+con.close()
+
 #res =mycur.execute ("SELECT name FROM sqlite_master")
 #res.fetchone()
