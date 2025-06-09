@@ -25,7 +25,7 @@ class DBOperations:
   #sql_delete_data = ""
   #sql_drop_table = ""
 
-def __init__(self):
+  def __init__(self):
     try:
       self.conn = sqlite3.connect("DBName.db")
       self.cur = self.conn.cursor()
@@ -36,11 +36,11 @@ def __init__(self):
     finally:
       self.conn.close()
 
-def get_connection(self):
+  def get_connection(self):
     self.conn = sqlite3.connect("DBName.db")
     self.cur = self.conn.cursor()
 
-def create_table(self):
+  def create_table(self):
     try:
       self.get_connection()
       self.cur.execute(self.sql_create_table_Airport)
