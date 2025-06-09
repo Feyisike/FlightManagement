@@ -10,7 +10,7 @@ mycur2.close()
 #create a class to handle the addition of flight info
 class AddFlightInfo:
     def _init_(self):
-        self.flightID = ''
+        self.flightID = 0
         self.departureAirport = ''
         self.destinationAirport = ''
         self.departureDateTime = ''
