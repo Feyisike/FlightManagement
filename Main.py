@@ -6,17 +6,17 @@ import sqlite3
 
 class DBOperations:
   #sql_create_table_firsttime = "create table if not exists "
- sql_create_table_firsttime_Airline = ["""CREATE TABLE IF NOT EXISTS Airline(
+ sql_create_table_firsttime_Airline = '''CREATE TABLE IF NOT EXISTS Airline(
                                             AirlineID INT PRIMARY KEY,
                                             AirlineName VARCHAR(80) NOT NULL,
                                             AirlineCode VARCHAR(10) NOT NULL,
-                                            Region Coverage VARCHAR(50) NOT NULL);"""]
+                                            Region Coverage VARCHAR(50) NOT NULL);'''
   #sql_create_table = "create table TableName"
- sql_create_table_Airport =["""CREATE TABLE Airport(
+ sql_create_table_Airport ='''CREATE TABLE Airport(
                             AirportID INT PRIMARY KEY, 
                             AirportName VARCHAR(80) NOT NULL, 
                             AirportCode VARCHAR(10) NOT NULL, 
-                            Location VARCHAR(100) NOT NULL ); """]
+                            Location VARCHAR(100) NOT NULL );'''
   #sql_insert = ""
   #sql_select_all = "select * from TableName"
   #sql_search = "select * from TableName where FlightID = ?"
