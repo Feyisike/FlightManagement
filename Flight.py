@@ -3,9 +3,9 @@ import sqlite3
 #create a database
 con =sqlite3.connect("DBName.db")
 mycur = con.cursor()
-mycur.execute("CREATE TABLE Airline(AirlineID, AirlineName, AirlineCode,Region Coverage)")
+#mycur.execute("CREATE TABLE Airline(AirlineID, AirlineName, AirlineCode,Region Coverage)")
 mycur.execute("""
-    INSERT INTO Airline VALUES
+              INSERT INTO Airline VALUES
     (1, 'Airways International', 'AI123', 'Global'),
     (2, 'Sky High Airlines', 'SHA456', 'North America'),
     (3, 'Oceanic Flights', 'OF789', 'Europe'),
@@ -21,6 +21,6 @@ mycur.execute("""
     (13, 'Charter Air', 'CA120', 'Charter Services'),
     (14, 'Cargo Carriers', 'CC121', 'Cargo Transport'),
     (15, 'HeliServices', 'HS122', 'Helicopter Services')
-""")
+              """)
 #res =mycur.execute ("SELECT name FROM sqlite_master")
 #res.fetchone()
