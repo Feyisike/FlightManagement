@@ -72,3 +72,4 @@ class AddFlightInfo:
         self.flightID
         ) + "\n" + self.departureAirport + "\n" + self.destinationAirport + "\n" + str(
       self.flightStatus)
+ 
