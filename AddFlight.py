@@ -68,10 +68,10 @@ class AddFlightInfo:
         return self.flightNumber
     
     def __str__(self):
-        return str(
-        self.flightID
-        ) + "\n" + self.flightNumber + "\n" + self.departureAirport + "\n" + self.destinationAirport + "\n" + str(
-      self.flightStatus)
+        return str(self.flightID) + "," + self.flight_number + ","+ self.flight_status
+        #return str(
+        #self.flightID
+        #) + "\n" + self.flightNumber + "\n" + self.departureAirport + "\n" + self.destinationAirport + "\n" + self.flightStatus
     
     def insert_data(self):
         try:
@@ -86,9 +86,9 @@ class AddFlightInfo:
             flight.set_departure_airport(input("Enter Departure Airport: "))
             flight.set_destination_airport(input("Enter Destination Airport: "))
             flight.set_flight_status(input("Enter Flight Status: "))
-
-            self.mycur3.execute("INSERT INTO Flight VALUES", tuple(str(flight).split("\n")))
-
+            data = str(self.flightID) + "," + self.flight_number + ","+ self.flight_status
+            #mycur3.execute("INSERT INTO Flight VALUES(?,?,?)", tuple(str(flight).split(",")))
+            mycur3.executemany("INSERT INTO Flight VALUES(?,?,?)", data)
             mycur3.commit()
             print("Inserted data successfully")
         except Exception as e:
