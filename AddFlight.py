@@ -22,8 +22,8 @@ class AddFlightInfo:
     def set_flight_id(self, flightID):
         self.flightID = flightID
 
-    def set_depature_airport(self, departureAirport):
-        self.depature_airport = departureAirport
+    def set_departure_airport(self, departureAirport):
+        self.departure_airport = departureAirport
 
     def set_destination_airport(self, destinationAirport):
         self.destination_airport = destinationAirport
@@ -82,10 +82,10 @@ class AddFlightInfo:
             flight = AddFlightInfo()
             #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
             flight.set_flight_id(int(input("Enter FlightID: ")))
-            flight.set_flight_number(int(input("Enter FlightNumber: ")))
-            flight.set_departure_airport(int(input("Enter Departure Airport: ")))
-            flight.set_destination_airport(int(input("Enter Destination Airport: ")))
-            flight.set_flight_status(int(input("Enter Flight Status: ")))
+            flight.set_flight_number(input("Enter FlightNumber: "))
+            flight.set_departure_airport(input("Enter Departure Airport: "))
+            flight.set_destination_airport(input("Enter Destination Airport: "))
+            flight.set_flight_status(input("Enter Flight Status: "))
 
             self.mycur3.execute("INSERT INTO Flight", tuple(str(flight).split("\n")))
 
