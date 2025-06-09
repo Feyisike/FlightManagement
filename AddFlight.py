@@ -87,7 +87,7 @@ class AddFlightInfo:
             flight.set_destination_airport(input("Enter Destination Airport: "))
             flight.set_flight_status(input("Enter Flight Status: "))
 
-            self.mycur3.execute("INSERT INTO Flight", tuple(str(flight).split("\n")))
+            self.mycur3.execute("INSERT INTO Flight VALUES", tuple(str(flight).split("\n")))
 
             mycur3.commit()
             print("Inserted data successfully")
