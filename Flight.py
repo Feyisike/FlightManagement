@@ -3,7 +3,7 @@ import sqlite3
 #create a database
 con =sqlite3.connect("DBName.db")
 mycur = con.cursor()
-#mycur.execute("CREATE TABLE Airline(AirlineID, AirlineName, AirlineCode,Region Coverage)")
+mycur.execute("CREATE TABLE Airline(AirlineID, AirlineName, AirlineCode,Region Coverage)")
 mycur.execute("""
     INSERT INTO Airline VALUES
     (1, 'Airways International', 'AI123', 'Global'),
