@@ -88,12 +88,12 @@ class AddFlightInfo:
 
             self.mycur3.execute("INSERT INTO Flight", tuple(str(flight).split("\n")))
 
-            self.conn2.commit()
+            mycur3.commit()
             print("Inserted data successfully")
         except Exception as e:
             print(e)
         finally:
-            self.conn.close()
+            mycur3.close()
 while True:
   print("\n Menu:")
   print("**********")
@@ -108,7 +108,7 @@ while True:
   __choose_menu = int(input("Enter your choice: "))
   #db_ops = DBOperations()
   if __choose_menu == 1:
-      AddFlightInfo.insert_data()
+      AddFlightInfo().insert_data()
     #db_ops.create_table()
   #elif __choose_menu == 2:
    # db_ops.insert_data()
