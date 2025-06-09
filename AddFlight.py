@@ -80,7 +80,8 @@ class AddFlightInfo:
             mycur3 = conn2.cursor()
 
             flight = AddFlightInfo()
-            flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
+            #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
+            flight.set_flight_id(int(input("Enter FlightID: ")))
             flight.set_flight_number(int(input("Enter FlightNumber: ")))
             flight.set_departure_airport(int(input("Enter Departure Airport: ")))
             flight.set_destination_airport(int(input("Enter Destination Airport: ")))
