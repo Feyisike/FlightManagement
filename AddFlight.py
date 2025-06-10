@@ -32,8 +32,8 @@ class AddFlightInfo:
     def set_flight_status(self, flightStatus):
         self.flight_status = flightStatus
 
-    def set_depature_datetime(self, departureDateTime):
-        self.depature_datetime = departureDateTime
+    def set_departure_datetime(self, departureDateTime):
+        self.departure_datetime = departureDateTime
 
     def set_arrival_datetime(self, arrivalDateTime):
         self.arrival_datetime = arrivalDateTime
@@ -50,7 +50,7 @@ class AddFlightInfo:
     def get_flight_id(self):
         return self.flightID
     
-    def get_depature_airport(self):
+    def get_departure_airport(self):
         return self.departureAirportID
     
     def get_destination_airport(self):
@@ -59,7 +59,7 @@ class AddFlightInfo:
     def get_flight_status(self):
         return self.flightStatus
     
-    def get_depature_datetime(self):
+    def get_departure_datetime(self):
         return self.departureDateTime
 
     def get_arrival_datetime(self):
@@ -81,6 +81,16 @@ class AddFlightInfo:
         #) + "\n" + self.flightNumber + "\n" + self.departureAirport + "\n" + self.destinationAirport + "\n" + self.flightStatus
     
 class DBoperations:
+    def __init__(self):
+        try:
+            self.connq = sqlite3.connect("DBFlight.db")
+            self.curq = self.connq.cursor()
+            #self.cur.execute(self.sql_create_table_firsttime_Airline)
+            #self.conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            self.connq.close()
 
     def insert_data(self):
         try:
@@ -97,7 +107,7 @@ class DBoperations:
             print("Please select different Airport IDs for Departure and Destination Airports")
             flight.set_departure_airport(int(input("Enter Departure Airport ID: ")))
             flight.set_destination_airport(int(input("Enter Destination Airport ID: ")))
-            flight.set_depature_datetime(input("Enter Departure Date and Time YYYY-MM-DD HH:MM:SS: "))
+            flight.set_departure_datetime(input("Enter Departure Date and Time YYYY-MM-DD HH:MM:SS: "))
             flight.set_arrival_datetime(input("Enter Arrival Date and Time YYYY-MM-DD HH:MM:SS: "))
             for row in mycur3.execute("SELECT AirlineID, AirlineName FROM Airline ORDER BY AirlineID"):
                 print (row)
