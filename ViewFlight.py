@@ -35,14 +35,29 @@ class ViewFlight:
             print("3. Pilot ID\n")
             choice = (int(input("Enter your choice: ")))
             if choice ==1:
-                self.flightID =self.set_flight_id(int(input("Enter the FlightID: ")))
+                self.set_flight_id(int(input("Enter the FlightID: ")))
                 fv1 =self.get_flight_id()
-                for row in cur_vf.execute("select * from Flight where FlightID = ?", str(fv1)):
-                    print(row)
+                print(fv1)
+
+                cur_vf.execute("SELECT * FROM Flight WHERE FlightID = ?",str(fv1))
+                result =cur_vf.fetchone()
+                if type(result) == type(tuple()):
+                    for index, detail in enumerate(result):
+                        if index == 0:
+                            print("Flight ID: " + str(detail))
+                        elif index == 1:
+                            print("Flight Number: " + detail)
+                        elif index == 2:
+                            print("Flight DepartureAirportID: " + detail)
+                        else:
+                            print("Status: " + str(detail))
+                else:
+                    print("No Record")
+                #print(result)
                 conn_vf.commit()
                 print("Data displayed successfully")
         except Exception as e:
             print(e)
 
         finally:
-           conn_vf.close()
+           cur_vf.close()
