@@ -128,7 +128,7 @@ class DBoperations:
             #data = str(flight.flightID) + "," + flight.flightNumber + ","+ str(flight.departureAirportID)+","+ str(flight.destinationAirportID)+ "," + flight.departureDateTime +","+ flight.arrivalDateTime + "," +str(flight.airlineID) + "," + flight.flightStatus + ","+str(flight.pilotID)
             #mycur3.executemany("INSERT INTO Flight VALUES(?,?,?,?,?,?,?,?,?)", tuple(str(flight).split(",")))
             #mycur3.executemany("INSERT INTO Flight VALUES(?,?,?,?,?,?,?,?,?)", data)
-            mycur3.executemany("INSERT INTO Flight VALUES (?,?,?,?)", data)
+            mycur3.executemany("INSERT INTO Flight VALUES (?,?,?,?,?,?,?,?,?)", data)
             mycur3.commit()
             print("Inserted data successfully")
         except Exception as e:
