@@ -1,4 +1,5 @@
 import sqlite3
+import ViewFlight
 # connect to database created by flight.py
 conn=sqlite3.connect('DBFlight.db')
 mycur2 = conn.cursor()
@@ -155,7 +156,7 @@ while True:
   print("\n Menu:")
   print("**********")
   print(" 1. Add a New Flight")
-  #print(" 2. Insert data into FlightInfo")
+  print(" 2. View FlightInfo")
   #print(" 3. Select all data from FlightInfo")
   #print(" 4. Search a flight")
   #print(" 5. Update data some records")
@@ -167,7 +168,8 @@ while True:
   if __choose_menu == 1:
     DBoperations().insert_data()
     #db_ops.create_table()
-  #elif __choose_menu == 2:
+  elif __choose_menu == 2:
+      ViewFlight().searchFlight()
    # db_ops.insert_data()
   #elif __choose_menu == 3:
     #db_ops.select_all()
