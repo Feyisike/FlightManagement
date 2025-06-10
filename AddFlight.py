@@ -24,28 +24,28 @@ class AddFlightInfo:
         self.flightID = flightID
 
     def set_flight_number(self, flightNumber):
-        self.flight_number = flightNumber
+        self.flightNumber = flightNumber
 
     def set_departure_airport_id(self, departureAirportID):
-        self.departure_airport_id = departureAirportID
+        self.departureAirportID = departureAirportID
 
     def set_destination_airport_id(self, destinationAirportID):
-        self.destination_airport_id = destinationAirportID
+        self.destinationAirportID = destinationAirportID
 
     def set_flight_status(self, flightStatus):
-        self.flight_status = flightStatus
+        self.flightStatus = flightStatus
 
     def set_departure_datetime(self, departureDateTime):
-        self.departure_datetime = departureDateTime
+        self.departureDateTime = departureDateTime
 
     def set_arrival_datetime(self, arrivalDateTime):
-        self.arrival_datetime = arrivalDateTime
+        self.arrivalDateTime = arrivalDateTime
 
     def set_airline_id(self, airlineID):
-        self.airline_id = airlineID
+        self.airlineID = airlineID
 
     def set_pilot_id(self, pilotID):
-        self.pilot_id = pilotID
+        self.pilotID = pilotID
 
     def get_flight_id(self):
         return self.flightID
@@ -99,10 +99,16 @@ class DBoperations:
             mycur3 = conn2.cursor()
 
             flight = AddFlightInfo()
-            #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
-            flight.set_flight_id(int(input("Enter FlightID: ")))
-            f1 = flight.get_flight_id()
-
+            #fid = mycur3.execute("SELECT COUNT(DISTINCT FlightID) FROM Flight")
+            #print(fid)
+            f=0
+            for row in mycur3.execute("SELECT FlightID, FlightNumber FROM Flight ORDER by FlightID"):
+                f=f+1
+            #print (f)
+            #flight.set_flight_id(int(mycur3.execute("SELECT COUNT(DISTINCT FlightID) FROM Flight")))
+            #flight.set_flight_id(int(input("Enter FlightID: ")))
+            #f1 = flight.get_flight_id()
+            f1=f+1
             flight.set_flight_number(input("Enter FlightNumber: "))
             f2 = flight.get_flight_number()
 
