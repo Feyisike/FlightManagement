@@ -11,17 +11,20 @@ mycur2.close()
 class AddFlightInfo:
     def __init__(self):
         self.flightID = 0
-        self.departureAirportID = 0
-        self.destinationAirportID = 0
-        self.departureDateTime = ''
-        self.arrivalDateTime = ''
-        self.flightNumber = ''
-        self.airlineID = 0
-        self.flightStatus = ''
-        self.pilotID = 0
+        self.flightNumber = 'TEST123'
+        self.departureAirportID = 15
+        self.destinationAirportID = 14
+        self.departureDateTime = '2024-10-10 00:00:00'
+        self.arrivalDateTime = '2024-10-10 08:00:00'
+        self.airlineID = 5
+        self.flightStatus = 'Landed'
+        self.pilotID = 1
 
     def set_flight_id(self, flightID):
         self.flightID = flightID
+
+    def set_flight_number(self, flightNumber):
+        self.flight_number = flightNumber
 
     def set_departure_airport_id(self, departureAirportID):
         self.departure_airport_id = departureAirportID
@@ -41,14 +44,14 @@ class AddFlightInfo:
     def set_airline_id(self, airlineID):
         self.airline_id = airlineID
 
-    def set_flight_number(self, flightNumber):
-        self.flight_number = flightNumber
-
     def set_pilot_id(self, pilotID):
         self.pilot_id = pilotID
 
     def get_flight_id(self):
         return self.flightID
+    
+    def get_flight_number(self):
+        return self.flightNumber
     
     def get_departure_airport_id(self):
         return self.departureAirportID
@@ -67,9 +70,6 @@ class AddFlightInfo:
 
     def get_airline_id(self):
         return self.airlineID
-
-    def get_flight_number(self):
-        return self.flightNumber
     
     def get_pilot_id(self):
         return self.pilotID
@@ -101,35 +101,45 @@ class DBoperations:
             flight = AddFlightInfo()
             #flight.set_flight_id(mycur3.execute("SELECT COUNT(*) FROM {Flight}"))
             flight.set_flight_id(int(input("Enter FlightID: ")))
+            f1 = flight.get_flight_id()
+
             flight.set_flight_number(input("Enter FlightNumber: "))
+            f2 = flight.get_flight_number()
+
             for row in mycur3.execute("SELECT AirportID, AirportName FROM Airport ORDER BY AirportID"):
                 print (row)
             print("Please select different Airport IDs for Departure and Destination Airports")
             flight.set_departure_airport_id(int(input("Enter Departure Airport ID: ")))
+            f3 = flight.get_departure_airport_id()
             flight.set_destination_airport_id(int(input("Enter Destination Airport ID: ")))
+            f4 = flight.get_destination_airport_id()
+
             flight.set_departure_datetime(input("Enter Departure Date and Time YYYY-MM-DD HH:MM:SS: "))
+            f5 = flight.get_departure_datetime()
+
             flight.set_arrival_datetime(input("Enter Arrival Date and Time YYYY-MM-DD HH:MM:SS: "))
+            f6 = flight.get_arrival_datetime()
+
             for row in mycur3.execute("SELECT AirlineID, AirlineName FROM Airline ORDER BY AirlineID"):
                 print (row)
             flight.set_airline_id(int(input("Enter AirlineID: ")))
+            f7 = flight.get_airline_id()
+
             flight.set_flight_status(input("Enter Flight Status: "))
+            f8 = flight.get_flight_status()
+            #f8 =flight.flightStatus
+
             print("Pilot IDs: 1 - John, 5 - Sarah, 9 - Linda, 13 - Elizabeth")
             flight.set_pilot_id(int(input("Enter PilotID: ")))
-            f1=flight.get_flight_id()
-            f2= flight.get_flight_number()
-            f3= flight.get_departure_airport_id()
-            f4 = flight.get_destination_airport_id()
-            f5 = flight.get_departure_datetime()
-            f6= flight.get_arrival_datetime()
-            f7=flight.get_airline_id()
-            f8=flight.get_flight_status()
-            f9= flight.get_pilot_id()
-            data = str(f1) + "," + f2 + "," + str(f3)+ ","+ str(f4)+ ","+f5 + ","+ f6 + "," + str(f7) +"," + f8 + "," + str(f9)
+            f9 = flight.get_pilot_id()
+            #data = str(f1) + "," + f2 + "," + str(f3)+ "," + str(f4)+ "," + f5 + "," + f6 + "," + str(f7) + "," + f8 + "," + str(f9)
+            data = [str(f1), f2, str(f3),str(f4), f5 , f6 , str(f7), f8, str(f9)]
             #data = str(flight.flightID) + "," + flight.flightNumber + ","+ str(flight.departureAirportID)+","+ str(flight.destinationAirportID)+ "," + flight.departureDateTime +","+ flight.arrivalDateTime + "," +str(flight.airlineID) + "," + flight.flightStatus + ","+str(flight.pilotID)
             #mycur3.executemany("INSERT INTO Flight VALUES(?,?,?,?,?,?,?,?,?)", tuple(str(flight).split(",")))
             #mycur3.executemany("INSERT INTO Flight VALUES(?,?,?,?,?,?,?,?,?)", data)
-            mycur3.executemany("INSERT INTO Flight VALUES (?,?,?,?,?,?,?,?,?)", data)
-            mycur3.commit()
+            mycur3.execute("INSERT INTO Flight VALUES (?,?,?,?,?,?,?,?,?)", data)
+            print (data)
+            conn2.commit()
             print("Inserted data successfully")
         except Exception as e:
             print(e)
