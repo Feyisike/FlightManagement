@@ -9,7 +9,7 @@ mycur2.close()
 
 #create a class to handle the addition of flight info
 class AddFlightInfo:
-    def _init_(self):
+    def __init__(self):
         self.flightID = 0
         self.departureAirportID = 0
         self.destinationAirportID = 0
@@ -105,8 +105,8 @@ class DBoperations:
             for row in mycur3.execute("SELECT AirportID, AirportName FROM Airport ORDER BY AirportID"):
                 print (row)
             print("Please select different Airport IDs for Departure and Destination Airports")
-            flight.set_departure_airport(int(input("Enter Departure Airport ID: ")))
-            flight.set_destination_airport(int(input("Enter Destination Airport ID: ")))
+            flight.set_departure_airport_id(int(input("Enter Departure Airport ID: ")))
+            flight.set_destination_airport_id(int(input("Enter Destination Airport ID: ")))
             flight.set_departure_datetime(input("Enter Departure Date and Time YYYY-MM-DD HH:MM:SS: "))
             flight.set_arrival_datetime(input("Enter Arrival Date and Time YYYY-MM-DD HH:MM:SS: "))
             for row in mycur3.execute("SELECT AirlineID, AirlineName FROM Airline ORDER BY AirlineID"):
@@ -115,9 +115,9 @@ class DBoperations:
             flight.set_flight_status(input("Enter Flight Status: "))
             print("Pilot IDs: 1 - John, 5 - Sarah, 9 - Linda, 13 - Elizabeth")
             flight.set_pilot_id(int(input("Enter PilotID: ")))
-            #data = str(flight.get_flight_id()) + "," + flight.get_flight_number() + ","+ flight.get_flight_status()
-            mycur3.execute("INSERT INTO Flight VALUES(?,?,?)", tuple(str(flight).split(",")))
-            #mycur3.executemany("INSERT INTO Flight VALUES(?,?,?)", data)
+            data = str(self.flightID) + "," + self.flight_number + ","+ str(self.departureAirportID)+","+ str(self.destinationAirportID)+ "," + self.departureDateTime +","+ self.arrivalDateTime + "," +str(self.airlineID) + "," + self.flight_status + ","+str(self.pilotID)
+            #mycur3.executemany("INSERT INTO Flight VALUES(?,?,?,?,?,?,?,?,?)", tuple(str(flight).split(",")))
+            mycur3.executemany("INSERT INTO Flight VALUES(?,?,?,?,?,?,?,?,?)", data)
             mycur3.commit()
             print("Inserted data successfully")
         except Exception as e:
