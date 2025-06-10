@@ -23,11 +23,11 @@ class AddFlightInfo:
     def set_flight_id(self, flightID):
         self.flightID = flightID
 
-    def set_departure_airport(self, departureAirportID):
-        self.departure_airport = departureAirportID
+    def set_departure_airport_id(self, departureAirportID):
+        self.departure_airport_id = departureAirportID
 
-    def set_destination_airport(self, destinationAirportID):
-        self.destination_airport = destinationAirportID
+    def set_destination_airport_id(self, destinationAirportID):
+        self.destination_airport_id = destinationAirportID
 
     def set_flight_status(self, flightStatus):
         self.flight_status = flightStatus
@@ -50,10 +50,10 @@ class AddFlightInfo:
     def get_flight_id(self):
         return self.flightID
     
-    def get_departure_airport(self):
+    def get_departure_airport_id(self):
         return self.departureAirportID
     
-    def get_destination_airport(self):
+    def get_destination_airport_id(self):
         return self.destinationAirportID
     
     def get_flight_status(self):
