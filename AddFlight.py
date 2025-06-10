@@ -1,5 +1,5 @@
 import sqlite3
-import ViewFlight
+from ViewFlight import *
 # connect to database created by flight.py
 conn=sqlite3.connect('DBFlight.db')
 mycur2 = conn.cursor()

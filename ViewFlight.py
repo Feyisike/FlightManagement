@@ -36,8 +36,8 @@ class ViewFlight:
             choice = (int(input("Enter your choice: ")))
             if choice ==1:
                 self.flightID =self.set_flight_id(int(input("Enter the FlightID: ")))
-                f1 =self.get_flight_id()
-                for row in cur_vf.execute("select * from Flight where FlightID = ?", f1):
+                fv1 =self.get_flight_id()
+                for row in cur_vf.execute("select * from Flight where FlightID = ?", str(fv1)):
                     print(row)
                 conn_vf.commit()
                 print("Data displayed successfully")
