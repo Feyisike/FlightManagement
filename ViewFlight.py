@@ -38,10 +38,13 @@ class ViewFlight:
                 self.set_flight_id(int(input("Enter the FlightID: ")))
                 fv1 =self.get_flight_id()
                 print(fv1)
-
-                cur_vf.execute("SELECT * FROM Flight WHERE FlightID = ?",str(fv1))
-                result =cur_vf.fetchone()
-                if type(result) == type(tuple()):
+                data2 = (fv1,)
+                #cur_vf.execute("SELECT * FROM Flight WHERE FlightID = ?",tuple(str(fv1)))
+                cur_vf.execute("SELECT * FROM Flight WHERE FlightID = ?",data2)
+                result =cur_vf.fetchall()
+                #cur_vf.close()
+                print(result)
+                '''if type(result) == type(tuple()):
                     for index, detail in enumerate(result):
                         if index == 0:
                             print("Flight ID: " + str(detail))
@@ -52,10 +55,29 @@ class ViewFlight:
                         else:
                             print("Status: " + str(detail))
                 else:
-                    print("No Record")
+                    print("No Record")'''
                 #print(result)
-                conn_vf.commit()
+                #conn_vf.commit()
                 print("Data displayed successfully")
+            elif choice ==2:
+                self.set_flight_status(input("Enter Flight Status: "))
+                fs1=self.get_flight_status()
+                data3 = (fs1,)
+                cur_vf.execute("SELECT * FROM Flight WHERE FlightStatus = ?",data3)
+                result =cur_vf.fetchall()
+                #cur_vf.close()
+                print(result)
+            elif choice == 3:
+                print("Pilot IDs: 1 - John, 5 - Sarah, 9 - Linda, 13 - Elizabeth")
+                self.set_pilot_id(int(input("Enter Pilot ID: ")))
+                pid=self.get_pilot_id()
+                data4 =(pid,)
+                cur_vf.execute("SELECT * FROM Flight WHERE PilotID = ?",data4)
+                result =cur_vf.fetchall()
+                #cur_vf.close()
+                print(result)
+            else:
+                print("Not a valid choice")
         except Exception as e:
             print(e)
 
