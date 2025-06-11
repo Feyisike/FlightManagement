@@ -8,8 +8,9 @@ SchduleModfication modefies the DepartureDateTime, ArrivalDateTime  and FlightSt
 
 Python Scripts
 Flight.py creates the database DBFlight.db used for testing the code
-AddFlight.py is the main python script to run to get the
-following functionality 
+ViewFlight.py contains script for viewing flight info called by the AddFlight.py file
+UpdateFlight.py contains code for updating flight info called by the AddFlight.py file
+AddFlight.py is the main python script to run to get the following functionality 
 1. Add a New Flight 
 2. View Flights by Criteria
 3. Update Flight information
