@@ -8,7 +8,7 @@ SET
     DepartureDateTime = '2025-06-07 15:00:00',
     ArrivalDateTime = '2025-06-07 18:00:10'
 WHERE
-    FlightID = 1;
+    FlightID = 11;
 
     UPDATE Flight
 SET
@@ -16,4 +16,4 @@ SET
     DepartureDateTime = '2025-06-06 15:00:00',
     ArrivalDateTime = '2025-06-06 18:00:10'
 WHERE
-    FlightID = 2;
+    FlightID = 12;
